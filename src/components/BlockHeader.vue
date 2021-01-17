@@ -1,7 +1,6 @@
 <template>
   <header>
     <img :src="logo" alt="logo">
-    <span>This is header component</span>
     <button>M</button>
   </header>
 </template>
