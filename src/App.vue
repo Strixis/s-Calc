@@ -1,29 +1,25 @@
 <template>
   <div>
-    <img :src="logo" alt="logo">
-    <span class="test">Hello</span>
-    <Test />
+    <BlockHeader />
+    <BlockMain />
+    <ComponentFooter />
   </div>
 </template>
 
 <script>
-import Test from 'components/Test';
-import logo from 'img/logo-mini.svg';
+import BlockHeader from 'components/BlockHeader';
+import BlockMain from 'components/BlockMain';
+import ComponentFooter from 'components/ComponentFooter';
 
 export default {
   components: {
-    Test
+    BlockHeader,
+    BlockMain,
+    ComponentFooter,
   },
-  data() {
-    return {
-      logo
-    }
-  }
 }
 </script>
 
 <style lang="sass">
 @use 'styles'
-.test
-  color: red
 </style>
