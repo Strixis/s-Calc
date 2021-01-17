@@ -1,0 +1,23 @@
+{
+  "include": [
+    "src/**/*"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "components": [
+        "./src/components/*"
+      ],
+      "styles": [
+        "./src/assets/styles/*"
+      ],
+      "img": [
+        "./src/assets/img/*"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
