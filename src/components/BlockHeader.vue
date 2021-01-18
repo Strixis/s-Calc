@@ -1,7 +1,7 @@
 <template>
-  <header>
-    <img :src="logo" alt="logo">
-    <button>M</button>
+  <header class="header">
+    <a href="#"><img :src="logo" alt="logo" class="logo"></a>
+    <button class="button_header-navigation">M</button>
   </header>
 </template>
 

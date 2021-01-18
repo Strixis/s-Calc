@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <BlockHeader />
     <BlockMain />
     <ComponentFooter />
