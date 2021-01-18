@@ -1,0 +1,55 @@
+@use './m-colors' as *
+@use './m-fonts' as *
+
+.main
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  flex: 1 0 auto
+  padding: 0 7px
+  box-sizing: border-box
+  margin: 7px 0 0 0
+
+.calculate-form
+  display: flex
+  flex-direction: column
+
+.button_add-operation
+  display: flex
+  justify-content: center
+  align-items: center
+  align-self: flex-end
+  width: 100px
+  height: 20px
+  padding: 3px 17px
+  border: 1px solid $color-border
+  box-sizing: border-box
+  border-radius: 7px
+  background: $color-button-add
+  margin: 7px 0 0 0
+  font-family: 'raleway'
+  font-style: normal
+  font-weight: 500
+  font-size: 14px
+  line-height: 16px
+  color: $font-color
+  &:hover
+    background: $color-button-add-hover
+  &:active
+    background: $color-button-add-active
+
+.total
+  padding: 14px 7px
+  border: 1px solid $color-border
+  border-radius: 7px
+  box-sizing: border-box
+  background: $color-background-header
+  margin: 7px 0
+  position: sticky
+  bottom: 7px
+  z-index: 1
+  &_text
+    @extend %font-main-total
+  &_number
+    @extend %font-output-total
+    margin: 0 0 0 7px

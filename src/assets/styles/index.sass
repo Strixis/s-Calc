@@ -1,7 +1,14 @@
 @use './header'
+@use './main'
 @use './footer'
+
+@use './m-colors' as *
   
 .container
+  display: flex
+  flex-direction: column
   max-width: 1440px
   min-width: 360px
+  min-height: 100vh
   margin: 0 auto
+  background: $color-background-main
