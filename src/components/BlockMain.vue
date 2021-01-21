@@ -1,9 +1,9 @@
 <template>
   <main class="main">
     <div class="calculate-form">
-      <ComponentOperationForm v-for="(operation, index) of operations"
-        :key="index"
-        v-bind.sync="operations[index]"
+      <ComponentOperationForm v-for="(operation) of $store.state.operations"
+        :key="operation.id"
+        :id="operation.id"
       />
       <button class="button_add-operation">Добавить</button>
     </div>
@@ -20,18 +20,6 @@ import ComponentOperationForm from 'components/ComponentOperationForm';
 export default {
   components: {
     ComponentOperationForm,
-  },
-  data() {
-    return {
-      operations: [
-        {
-          name: 'Operation 1',
-          price: 0,
-          quantitys: [0],
-          cost: 0,
-        },
-      ],
-    };
   },
 }
 </script>

@@ -23,6 +23,7 @@ module.exports = (_, { mode }) => ({
     ],
     alias: {
       components: path.resolve(__dirname, 'src', 'components'),
+      store: path.resolve(__dirname, 'src', 'store'),
       styles: path.resolve(__dirname, 'src', 'assets', 'styles'),
       img: path.resolve(__dirname, 'src', 'assets', 'img'),
       fonts: path.resolve(__dirname, 'src', 'assets', 'fonts'),

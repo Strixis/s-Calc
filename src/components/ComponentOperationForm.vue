@@ -5,14 +5,18 @@
         <span>Наименование:</span>
         <input type="text"
           :value="name"
-          @input="$emit('update:name', $event.target.value)"
+          @input="changeOperationName({
+            id: $props.id,
+            value: $event.target.value,
+          }
+          )"
         >
       </label>
       <label>
         <span>Расценка:</span>
         <input type="text"
           :value="price"
-          @input="$emit('update:price', $event.target.value)"
+          @input="changePrice($props.id, $event.target.value)"
         >
       </label>
       <label>
@@ -22,9 +26,7 @@
         >
           <input type="text"
             :value="quantity"
-            @input="$emit('update:quantitys', 
-              changeQuantity($event.target.value, quantitys, index)
-            )"
+            @input="changeQuantity($props.id, $event.target.value, index)"
           >
           <button>-</button>
         </div>
@@ -42,25 +44,45 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapMutations } from 'vuex';
+
 export default {
-  props: ['name', 'price', 'quantitys', 'cost'],
-  methods: {
-    changeQuantity(newValue, quantitys, index) {
-      let newQuantitys = [...quantitys];
-      newQuantitys[index] = newValue;
-      return newQuantitys;
-    },
-  },
+  props: ['id'],
   computed: {
-    fullQuantity: function() {
-      return this.$props.quantitys.reduce(
-        (accumulator, currentValue) => {
-          return (
-            +currentValue || currentValue == 0 ?
-              (accumulator + +currentValue) :
-              'Количество должно быть числом.'
-          )
-        }, 0);
+    ...mapState({
+      name(state) {
+        return state.operations[this.$props.id].name
+      },
+      price(state) {
+        return state.operations[this.$props.id].price
+      },
+      quantitys(state) {
+        return state.operations[this.$props.id].quantitys
+      },
+      fullQuantity(state) {
+        return state.operations[this.$props.id].fullQuantity
+      },
+      cost(state) {
+        return state.operations[this.$props.id].cost
+      },
+    }),
+  },
+  methods: {
+    ...mapMutations([
+      'changeOperationName',
+      'changeOperationPrice',
+      'changeOperationQuantity',
+      'changeOperationFullQuantity',
+      'changeOperationCost',
+    ]),
+    changeQuantity(id, value, index) {
+      this.changeOperationQuantity({id, value, index});
+      this.changeOperationFullQuantity(id);
+      this.changeOperationCost(id);
+    },
+    changePrice(id, value) {
+      this.changeOperationPrice({id, value});
+      this.changeOperationCost(id);
     },
   },
 }
