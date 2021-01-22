@@ -1,40 +1,57 @@
 <template>
-  <div>
-    <div>
-      <label>
-        <span>Наименование:</span>
-        <input type="text"
+  <div class="operation">
+    <div class="fields">
+      <label class="field field__name">
+        <span class="field_title">Наименование:</span>
+        <input class="field_input field_input__name"
+          type="text"
           :value="name"
           @input="changeName($props.id, $event.target.value)"
         >
       </label>
-      <label>
-        <span>Расценка:</span>
-        <input type="text"
+      <label class="field field__price">
+        <span class="field_title">Расценка:</span>
+        <input class="field_input field_input__price"
+          type="text"
           :value="price"
           @input="changePrice($props.id, $event.target.value)"
         >
       </label>
-      <label>
-        <span>Количество:</span>
+      <label class="field field__quantity">
+        <span class="field_title field_title__quantity">Количество:</span>
         <div v-for="(quantity, index) of quantitys"
           :key="index"
+          class="quantity"
         >
-          <input type="text"
+          <input class="field_input field_input__quantity"
+            type="text"
             :value="quantity"
             @input="changeQuantity($props.id, $event.target.value, index)"
           >
-          <button @click="() => removeQuantity($props.id, index)">-</button>
+          <button class="fields_button"
+            @click="() => removeQuantity($props.id, index)"
+          >
+            -
+          </button>
         </div>
+        <button class="fields_button"
+          @click="() => addQuantity($props.id)"
+        >
+          +
+        </button>
       </label>
-      <button @click="() => addQuantity($props.id)">+</button>
-      <button @click="() => removeOperation($props.id)">X</button>
+      <button class="fields_button fields_button__close"
+        @click="() => removeOperation($props.id)"
+      >
+        X
+      </button>
     </div>
-    <div>
-      <p>Наименование: <span>{{ name }}</span></p>
-      <p>Расценка: <span>{{ price }}</span></p>
-      <p>Общее количество: <span>{{ fullQuantity }}</span></p>
-      <p>Сумма: <span>{{ cost }}</span></p>
+    <div class="line"></div>
+    <div class="data">
+      <p class="data_text">Наименование: <span class="data_value">{{ name }}</span></p>
+      <p class="data_text">Расценка: <span class="data_value">{{ price }}</span></p>
+      <p class="data_text">Общее количество: <span class="data_value">{{ fullQuantity }}</span></p>
+      <p class="data_text">Сумма: <span class="data_value">{{ cost }}</span></p>
     </div>
   </div>
 </template>

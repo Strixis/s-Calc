@@ -46,7 +46,7 @@ export default new Vuex.Store({
     },
     changeOperationCost(state, id) {
       const operation = this.getters.operation(id);
-      operation.cost = operation.fullQuantity * operation.price;
+      operation.cost = +(operation.fullQuantity * operation.price).toFixed(3);
     },
 
     addOperationQuantity(state, id) {
@@ -84,9 +84,9 @@ export default new Vuex.Store({
     },
 
     changeTotalCost(state) {
-      state.totalCost = state.operations.reduce((accumulator, currentValue) => (
+      state.totalCost = +(state.operations.reduce((accumulator, currentValue) => (
         accumulator + currentValue.cost
-      ), 0);
+      ), 0)).toFixed(3);
     },
   },
 });

@@ -36,7 +36,7 @@ export default {
     }),
    isValid() {
      return Number.isNaN(this.totalCost) ? true : false;
-   }
+   },
   },
   methods: {
     ...mapMutations([
