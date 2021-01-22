@@ -10,6 +10,8 @@
     <div class="total">
       <span class="total_text">Итого:</span>
       <span class="total_number">{{ totalCost }}</span>
+      <span v-show="isValid" class="total_error">Расценка и количество должны быть числами.</span>
+      <span v-show="isValid" class="total_error">Дробная часть разделяется точкой.</span>
     </div>
   </main>
 </template>
@@ -32,6 +34,9 @@ export default {
         return state.totalCost;
       },
     }),
+   isValid() {
+     return Number.isNaN(this.totalCost) ? true : false;
+   }
   },
   methods: {
     ...mapMutations([
