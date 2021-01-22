@@ -18,9 +18,11 @@ export default new Vuex.Store({
       },
     ],
   },
+
   getters: {
     operation: state => id => state.operations.find((operation) => (operation.id ===id)),
   },
+
   mutations: {
     changeOperationName(state, payload) {
       this.getters.operation(payload.id).name = payload.value;
@@ -37,11 +39,17 @@ export default new Vuex.Store({
         (accumulator, currentValue) => (accumulator + +currentValue), 0
       );
       operation.fullQuantity = fullQuantity;
-      
     },
     changeOperationCost(state, id) {
       const operation = this.getters.operation(id);
       operation.cost = operation.fullQuantity * operation.price;
+    },
+
+    addOperationQuantity(state, id) {
+      const operation = this.getters.operation(id);
+      const newQuantitys = [...operation.quantitys];
+      newQuantitys.push(0);
+      operation.quantitys = newQuantitys;
     },
   },
 });

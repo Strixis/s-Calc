@@ -5,11 +5,7 @@
         <span>Наименование:</span>
         <input type="text"
           :value="name"
-          @input="changeOperationName({
-            id: $props.id,
-            value: $event.target.value,
-          }
-          )"
+          @input="changeName($props.id, $event.target.value)"
         >
       </label>
       <label>
@@ -31,7 +27,7 @@
           <button>-</button>
         </div>
       </label>
-      <button>+</button>
+      <button @click="() => addQuantity($props.id)">+</button>
       <button>X</button>
     </div>
     <div>
@@ -74,7 +70,12 @@ export default {
       'changeOperationQuantity',
       'changeOperationFullQuantity',
       'changeOperationCost',
+      'addOperationQuantity',
     ]),
+
+    changeName(id, value) {
+      this.changeOperationName({id, value});
+    },
     changeQuantity(id, value, index) {
       this.changeOperationQuantity({id, value, index});
       this.changeOperationFullQuantity(id);
@@ -84,6 +85,10 @@ export default {
       this.changeOperationPrice({id, value});
       this.changeOperationCost(id);
     },
+
+    addQuantity(id) {
+      this.addOperationQuantity(id);
+    }
   },
 }
 </script>
