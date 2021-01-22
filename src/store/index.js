@@ -56,6 +56,21 @@ export default new Vuex.Store({
       const newQuantitys = [...operation.quantitys];
       newQuantitys.splice(payload.index, 1);
       operation.quantitys = newQuantitys;
-    }
+    },
+
+    addNewOperation(state, payload) {
+      const newId = this.state.operations[this.state.operations.length - 1].id + 1;
+      const newOperation = {
+        id: newId,
+        name: `Operation ${newId + 1}`,
+        price: 0,
+        quantitys: [0],
+        fullQuantity: 0,
+        cost: 0,
+      };
+      const newOperations = [...this.state.operations];
+      newOperations.push(newOperation);
+      this.state.operations = newOperations;
+    },
   },
 });
