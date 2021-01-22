@@ -30,6 +30,7 @@
   font-size: 14px
   line-height: 16px
   color: $font-color
+  float: right
   &:hover
     background: $color-button-add-hover
   &:active
@@ -45,6 +46,10 @@
   position: sticky
   bottom: 7px
   z-index: 1
+  &::after
+    content: ""
+    display: table
+    clear: both
   &_text
     @extend %font-main-total
   &_number
