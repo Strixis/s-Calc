@@ -20,7 +20,7 @@ export default new Vuex.Store({
   },
 
   getters: {
-    operation: state => id => state.operations.find((operation) => (operation.id ===id)),
+    operation: state => id => state.operations.find((operation) => (+operation.id === +id)),
   },
 
   mutations: {
@@ -31,7 +31,10 @@ export default new Vuex.Store({
       this.getters.operation(payload.id).price = payload.value;
     },
     changeOperationQuantity(state, payload) {
-      this.getters.operation(payload.id).quantitys[payload.index] = payload.value;
+      const operation = this.getters.operation(payload.id);
+      const newQuantitys = [...operation.quantitys];
+      newQuantitys[payload.index] = payload.value;
+      operation.quantitys = newQuantitys;
     },
     changeOperationFullQuantity(state, id) {
       const operation = this.getters.operation(id);
@@ -59,7 +62,7 @@ export default new Vuex.Store({
     },
 
     addNewOperation(state, payload) {
-      const newId = this.state.operations[this.state.operations.length - 1].id + 1;
+      const newId = state.operations[this.state.operations.length - 1].id + 1;
       const newOperation = {
         id: newId,
         name: `Operation ${newId + 1}`,
@@ -68,9 +71,15 @@ export default new Vuex.Store({
         fullQuantity: 0,
         cost: 0,
       };
-      const newOperations = [...this.state.operations];
+      const newOperations = [...state.operations];
       newOperations.push(newOperation);
       this.state.operations = newOperations;
+    },
+    removeOperation(state, id) {
+      const newOperations = [...state.operations];
+      const unnecessaryOperation = newOperations.find((operation) => operation.id === id);
+      newOperations.splice(newOperations.indexOf(unnecessaryOperation), 1);
+      state.operations = newOperations;
     },
   },
 });

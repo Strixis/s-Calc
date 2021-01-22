@@ -28,7 +28,7 @@
         </div>
       </label>
       <button @click="() => addQuantity($props.id)">+</button>
-      <button>X</button>
+      <button @click="() => removeOperation($props.id)">X</button>
     </div>
     <div>
       <p>Наименование: <span>{{ name }}</span></p>
@@ -46,20 +46,23 @@ export default {
   props: ['id'],
   computed: {
     ...mapState({
+      operations(state) {
+        return state.operations;
+      },
       name(state) {
-        return state.operations[this.$props.id].name
+        return state.operations.find((operation) => operation.id === this.$props.id).name;
       },
       price(state) {
-        return state.operations[this.$props.id].price
+        return state.operations.find((operation) => operation.id === this.$props.id).price;
       },
       quantitys(state) {
-        return state.operations[this.$props.id].quantitys
+        return state.operations.find((operation) => operation.id === this.$props.id).quantitys;
       },
       fullQuantity(state) {
-        return state.operations[this.$props.id].fullQuantity
+        return state.operations.find((operation) => operation.id === this.$props.id).fullQuantity;
       },
       cost(state) {
-        return state.operations[this.$props.id].cost
+        return state.operations.find((operation) => operation.id === this.$props.id).cost;
       },
     }),
   },
@@ -98,6 +101,10 @@ export default {
         this.changeOperationFullQuantity(id);
         this.changeOperationCost(id);
       };
+    },
+
+    removeOperation(id) {
+      if (this.operations.length > 1) this.$store.commit('removeOperation', id);
     },
   },
 }
