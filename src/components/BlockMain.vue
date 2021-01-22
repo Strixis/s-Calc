@@ -9,7 +9,7 @@
     </div>
     <div class="total">
       <span class="total_text">Итого:</span>
-      <span class="total_number">0123456789</span>
+      <span class="total_number">{{ totalCost }}</span>
     </div>
   </main>
 </template>
@@ -27,6 +27,9 @@ export default {
     ...mapState({
       operations(state) {
         return state.operations;
+      },
+      totalCost(state) {
+        return state.totalCost;
       },
     }),
   },

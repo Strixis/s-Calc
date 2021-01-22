@@ -17,6 +17,7 @@ export default new Vuex.Store({
         cost: 0,
       },
     ],
+    totalCost: 0,
   },
 
   getters: {
@@ -61,7 +62,7 @@ export default new Vuex.Store({
       operation.quantitys = newQuantitys;
     },
 
-    addNewOperation(state, payload) {
+    addNewOperation(state) {
       const newId = state.operations[this.state.operations.length - 1].id + 1;
       const newOperation = {
         id: newId,
@@ -80,6 +81,12 @@ export default new Vuex.Store({
       const unnecessaryOperation = newOperations.find((operation) => operation.id === id);
       newOperations.splice(newOperations.indexOf(unnecessaryOperation), 1);
       state.operations = newOperations;
+    },
+
+    changeTotalCost(state) {
+      state.totalCost = state.operations.reduce((accumulator, currentValue) => (
+        accumulator + currentValue.cost
+      ), 0);
     },
   },
 });

@@ -75,6 +75,7 @@ export default {
       'changeOperationCost',
       'addOperationQuantity',
       'removeOperationQuantity',
+      'changeTotalCost',
     ]),
 
     changeName(id, value) {
@@ -84,27 +85,29 @@ export default {
       this.changeOperationQuantity({id, value, index});
       this.changeOperationFullQuantity(id);
       this.changeOperationCost(id);
+      this.changeTotalCost();
     },
     changePrice(id, value) {
       this.changeOperationPrice({id, value});
       this.changeOperationCost(id);
+      this.changeTotalCost();
     },
 
     addQuantity(id) {
       this.addOperationQuantity(id);
-      this.changeOperationFullQuantity(id);
-      this.changeOperationCost(id);
     },
     removeQuantity(id, index) {
       if (this.quantitys.length > 1) {
         this.removeOperationQuantity({id, index});
         this.changeOperationFullQuantity(id);
         this.changeOperationCost(id);
+        this.changeTotalCost();
       };
     },
 
     removeOperation(id) {
       if (this.operations.length > 1) this.$store.commit('removeOperation', id);
+      this.changeTotalCost();
     },
   },
 }
