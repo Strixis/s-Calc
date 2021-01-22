@@ -51,5 +51,11 @@ export default new Vuex.Store({
       newQuantitys.push(0);
       operation.quantitys = newQuantitys;
     },
+    removeOperationQuantity(state, payload) {
+      const operation = this.getters.operation(payload.id);
+      const newQuantitys = [...operation.quantitys];
+      newQuantitys.splice(payload.index, 1);
+      operation.quantitys = newQuantitys;
+    }
   },
 });

@@ -24,7 +24,7 @@
             :value="quantity"
             @input="changeQuantity($props.id, $event.target.value, index)"
           >
-          <button>-</button>
+          <button @click="() => removeQuantity($props.id, index)">-</button>
         </div>
       </label>
       <button @click="() => addQuantity($props.id)">+</button>
@@ -71,6 +71,7 @@ export default {
       'changeOperationFullQuantity',
       'changeOperationCost',
       'addOperationQuantity',
+      'removeOperationQuantity',
     ]),
 
     changeName(id, value) {
@@ -88,7 +89,16 @@ export default {
 
     addQuantity(id) {
       this.addOperationQuantity(id);
-    }
+      this.changeOperationFullQuantity(id);
+      this.changeOperationCost(id);
+    },
+    removeQuantity(id, index) {
+      if (this.quantitys.length > 1) {
+        this.removeOperationQuantity({id, index});
+        this.changeOperationFullQuantity(id);
+        this.changeOperationCost(id);
+      };
+    },
   },
 }
 </script>
