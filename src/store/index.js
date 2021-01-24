@@ -9,7 +9,7 @@ export default new Vuex.Store({
   state: {
     operations: [
       {
-        id: 0,
+        id: 1,
         name: 'Operation 1',
         price: 0,
         quantitys: [0],
@@ -63,10 +63,10 @@ export default new Vuex.Store({
     },
 
     addNewOperation(state) {
-      const newId = state.operations[this.state.operations.length - 1].id + 1;
+      const newId = state.operations[state.operations.length - 1].id + 1;
       const newOperation = {
         id: newId,
-        name: `Operation ${newId + 1}`,
+        name: `Operation ${newId}`,
         price: 0,
         quantitys: [0],
         fullQuantity: 0,
