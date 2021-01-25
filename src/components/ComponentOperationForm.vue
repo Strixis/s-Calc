@@ -87,7 +87,7 @@ export default {
     ...mapMutations([
       'changeOperationName',
       'changeOperationPrice',
-      'changeOperationQuantity',
+      'changeOperationQuantitys',
       'changeOperationFullQuantity',
       'changeOperationCost',
       'addOperationQuantity',
@@ -99,7 +99,7 @@ export default {
       this.changeOperationName({id, value});
     },
     changeQuantity(id, value, index) {
-      this.changeOperationQuantity({id, value, index});
+      this.changeOperationQuantitys({id, value, index});
       this.changeOperationFullQuantity(id);
       this.changeOperationCost(id);
       this.changeTotalCost();
