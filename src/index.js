@@ -7,7 +7,7 @@ import store from 'store';
 import 'styles/normalize.css';
 import 'fonts';
 
-Vue.config.devtoold = true;
+Vue.config.devtools = true;
 
 new Vue({
   store,
