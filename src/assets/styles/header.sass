@@ -1,0 +1,31 @@
+@use './m-colors' as *
+@use './m-fonts' as *
+
+.header
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 7px
+  border-radius: 0 0 14px 14px
+  box-sizing: border-box
+  background: $color-background-header
+  position: sticky
+  top: 0
+  z-index: 1
+
+.button_header-navigation
+  padding: 7px 14px
+  border: 1px solid $color-border
+  box-sizing: border-box
+  border-radius: 6px
+  background: $color-button-nav
+  font-family: 'lobster', fantasy
+  font-style: normal
+  font-weight: normal
+  font-size: 18px
+  line-height: 22px
+  color: $font-header-color
+  &:hover
+    background: $color-button-nav-hover
+  &:active
+    background: $color-button-nav-active

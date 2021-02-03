@@ -1,0 +1,13 @@
+@use './m-colors' as *
+@use  './m-fonts' as *
+
+.footer
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-shrink: 0
+  padding: 16px 0
+  box-sizing: border-box
+  background: $color-background-header
+  &_text
+    @extend %font-header
